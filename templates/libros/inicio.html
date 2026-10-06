@@ -167,6 +167,7 @@
                             <th>Género</th>
                             <th>Fecha</th>
                             <th>Disponible</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
 
@@ -174,6 +175,11 @@
 
                         {% for libro in libros %}
                             <tr>
+                                <td>
+    <a href="#">Editar</a>
+    |
+    <a href="#">Eliminar</a>
+</td>
                                 <td>{{ libro.titulo }}</td>
                                 <td>{{ libro.autor }}</td>
                                 <td>{{ libro.genero }}</td>

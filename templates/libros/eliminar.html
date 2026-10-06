@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca | Eliminar libro</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f1ea;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contenedor {
+            width: 430px;
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        h2 {
+            color: #9c2f2f;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .botones {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        button,
+        a {
+            padding: 11px 17px;
+            border-radius: 7px;
+            border: none;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        button {
+            background: #a83838;
+            color: white;
+            cursor: pointer;
+        }
+
+        a {
+            background: #ddd;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <h2>Eliminar libro</h2>
+
+        <p>
+            ¿Seguro que deseas eliminar
+            <strong>{{ libro.titulo }}</strong>?
+        </p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="botones">
+
+                <button type="submit">
+                    Eliminar
+                </button>
+
+                <a href="#">
+                    Cancelar
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+</html>
