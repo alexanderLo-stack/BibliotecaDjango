@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Biblioteca | Registro</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f1ea;
+
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contenedor {
+            background: white;
+
+            width: 420px;
+
+            padding: 40px;
+
+            border-radius: 15px;
+
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            color: #24352b;
+            margin-bottom: 8px;
+        }
+
+        .subtitulo {
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+
+            margin-top: 15px;
+            margin-bottom: 6px;
+
+            font-weight: bold;
+
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+
+            padding: 11px;
+
+            border: 1px solid #ccc;
+            border-radius: 7px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #496b57;
+        }
+
+        button {
+            width: 100%;
+
+            margin-top: 25px;
+
+            padding: 13px;
+
+            background: #24352b;
+
+            color: white;
+
+            border: none;
+            border-radius: 7px;
+
+            font-size: 16px;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #36513f;
+        }
+
+        .volver {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .volver a {
+            color: #36513f;
+            text-decoration: none;
+        }
+
+        .errores {
+            color: #a02d2d;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <h1>Crear cuenta</h1>
+
+        <p class="subtitulo">
+            Regístrate para acceder a la biblioteca.
+        </p>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <label>Usuario</label>
+            {{ form.username }}
+
+            <label>Contraseña</label>
+            {{ form.password1 }}
+
+            <label>Confirmar contraseña</label>
+            {{ form.password2 }}
+
+            {% if form.errors %}
+                <div class="errores">
+                    {{ form.errors }}
+                </div>
+            {% endif %}
+
+            <button type="submit">
+                Crear cuenta
+            </button>
+
+        </form>
+
+        <div class="volver">
+            <a href="{% url 'login' %}">
+                Ya tengo una cuenta
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>

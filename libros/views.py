@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 
 
 def login_view(request):
@@ -10,7 +11,11 @@ def login_view(request):
         usuario = request.POST.get('usuario')
         clave = request.POST.get('clave')
 
-        user = authenticate(request, username=usuario, password=clave)
+        user = authenticate(
+            request,
+            username=usuario,
+            password=clave
+        )
 
         if user is not None:
             login(request, user)
@@ -18,7 +23,28 @@ def login_view(request):
         else:
             mensaje = 'Usuario o contraseña incorrectos'
 
-    return render(request, 'login/login.html', {'mensaje': mensaje})
+    return render(
+        request,
+        'login/login.html',
+        {'mensaje': mensaje}
+    )
+
+
+def registro(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+
+    return render(
+        request,
+        'login/registro.html',
+        {'form': form}
+    )
 
 
 @login_required

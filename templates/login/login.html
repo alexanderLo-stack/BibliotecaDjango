@@ -2,32 +2,217 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Biblioteca | Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca | Iniciar sesión</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            .registro {
+    text-align: center;
+    margin-top: 20px;
+    color: #777;
+}
+
+.registro a {
+    color: #36513f;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.registro a:hover {
+    text-decoration: underline;
+}
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f1ea;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contenedor {
+            width: 850px;
+            min-height: 480px;
+            display: flex;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .lado-biblioteca {
+            width: 50%;
+            background: #24352b;
+            color: white;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .lado-biblioteca h1 {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .lado-biblioteca p {
+            color: #d5ddd7;
+            line-height: 1.6;
+        }
+
+        .libro {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .lado-login {
+            width: 50%;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .lado-login h2 {
+            color: #24352b;
+            margin-bottom: 8px;
+        }
+
+        .subtitulo {
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #496b57;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            background: #24352b;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #36513f;
+        }
+
+        .mensaje {
+            background: #f8dddd;
+            color: #9c2f2f;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 750px) {
+            .contenedor {
+                width: 90%;
+                flex-direction: column;
+            }
+
+            .lado-biblioteca,
+            .lado-login {
+                width: 100%;
+            }
+
+            .lado-biblioteca {
+                padding: 30px;
+            }
+
+            .lado-login {
+                padding: 35px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-    <h1>Biblioteca</h1>
-    <h2>Iniciar sesión</h2>
+    <div class="contenedor">
 
-    <form method="POST">
-        {% csrf_token %}
+        <div class="lado-biblioteca">
+            <div class="libro">📚</div>
 
-        <label>Usuario</label>
-        <input type="text" name="usuario" required>
+            <h1>Biblioteca</h1>
 
-        <br><br>
+            <p>
+                Sistema para administrar y registrar libros de forma simple.
+            </p>
+        </div>
 
-        <label>Contraseña</label>
-        <input type="password" name="clave" required>
+        <div class="lado-login">
 
-        <br><br>
+            <h2>Iniciar sesión</h2>
+            <p class="subtitulo">Ingresa tus datos para continuar</p>
 
-        <button type="submit">Ingresar</button>
-    </form>
+            {% if mensaje %}
+                <div class="mensaje">
+                    {{ mensaje }}
+                </div>
+            {% endif %}
 
-    {% if mensaje %}
-        <p>{{ mensaje }}</p>
-    {% endif %}
+            <form method="POST">
+                {% csrf_token %}
+
+                <label>Usuario</label>
+                <input
+                    type="text"
+                    name="usuario"
+                    placeholder="Ingresa tu usuario"
+                    required
+                >
+
+                <label>Contraseña</label>
+                <input
+                    type="password"
+                    name="clave"
+                    placeholder="Ingresa tu contraseña"
+                    required
+                >
+
+                <div class="registro">
+    <p>
+        ¿No tienes una cuenta?
+        <a href="{% url 'registro' %}">
+            Registrarse
+        </a>
+    </p>
+</div>
+            </form>
+
+        </div>
+
+    </div>
 
 </body>
 </html>
