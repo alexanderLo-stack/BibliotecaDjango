@@ -3,34 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Biblioteca | Iniciar sesión</title>
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            .registro {
-    text-align: center;
-    margin-top: 20px;
-    color: #777;
-}
-
-.registro a {
-    color: #36513f;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.registro a:hover {
-    text-decoration: underline;
-}
         }
 
         body {
             font-family: Arial, sans-serif;
             background: #f4f1ea;
+
             min-height: 100vh;
+
             display: flex;
             justify-content: center;
             align-items: center;
@@ -39,18 +28,25 @@
         .contenedor {
             width: 850px;
             min-height: 480px;
+
             display: flex;
+
             background: white;
+
             border-radius: 15px;
             overflow: hidden;
+
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
         .lado-biblioteca {
             width: 50%;
+
             background: #24352b;
             color: white;
+
             padding: 50px;
+
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -73,7 +69,9 @@
 
         .lado-login {
             width: 50%;
+
             padding: 50px;
+
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -91,17 +89,22 @@
 
         label {
             display: block;
+
             margin-bottom: 7px;
+
             color: #333;
             font-weight: bold;
         }
 
         input {
             width: 100%;
+
             padding: 12px;
             margin-bottom: 20px;
+
             border: 1px solid #ccc;
             border-radius: 7px;
+
             font-size: 15px;
         }
 
@@ -112,12 +115,17 @@
 
         button {
             width: 100%;
+
             padding: 13px;
+
             background: #24352b;
             color: white;
+
             border: none;
             border-radius: 7px;
+
             font-size: 16px;
+
             cursor: pointer;
         }
 
@@ -125,16 +133,36 @@
             background: #36513f;
         }
 
+        .registro {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+        }
+
+        .registro a {
+            color: #36513f;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .registro a:hover {
+            text-decoration: underline;
+        }
+
         .mensaje {
             background: #f8dddd;
             color: #9c2f2f;
+
             padding: 10px;
-            border-radius: 6px;
             margin-bottom: 20px;
+
+            border-radius: 6px;
+
             text-align: center;
         }
 
         @media (max-width: 750px) {
+
             .contenedor {
                 width: 90%;
                 flex-direction: column;
@@ -153,6 +181,7 @@
                 padding: 35px;
             }
         }
+
     </style>
 </head>
 
@@ -161,30 +190,42 @@
     <div class="contenedor">
 
         <div class="lado-biblioteca">
-            <div class="libro">📚</div>
+
+            <div class="libro">
+                📚
+            </div>
 
             <h1>Biblioteca</h1>
 
             <p>
-                Sistema para administrar y registrar libros de forma simple.
+                Sistema para administrar y registrar libros
+                de forma simple.
             </p>
+
         </div>
 
         <div class="lado-login">
 
             <h2>Iniciar sesión</h2>
-            <p class="subtitulo">Ingresa tus datos para continuar</p>
+
+            <p class="subtitulo">
+                Ingresa tus datos para continuar
+            </p>
 
             {% if mensaje %}
+
                 <div class="mensaje">
                     {{ mensaje }}
                 </div>
+
             {% endif %}
 
             <form method="POST">
+
                 {% csrf_token %}
 
                 <label>Usuario</label>
+
                 <input
                     type="text"
                     name="usuario"
@@ -193,6 +234,7 @@
                 >
 
                 <label>Contraseña</label>
+
                 <input
                     type="password"
                     name="clave"
@@ -200,15 +242,23 @@
                     required
                 >
 
-                <div class="registro">
-    <p>
-        ¿No tienes una cuenta?
-        <a href="{% url 'registro' %}">
-            Registrarse
-        </a>
-    </p>
-</div>
+                <button type="submit">
+                    Ingresar
+                </button>
+
             </form>
+
+            <div class="registro">
+
+                <p>
+                    ¿No tienes una cuenta?
+
+                    <a href="{% url 'registro' %}">
+                        Registrarse
+                    </a>
+                </p>
+
+            </div>
 
         </div>
 

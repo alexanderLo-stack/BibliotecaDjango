@@ -51,6 +51,10 @@ def registro(request):
 def inicio(request):
     return render(request, 'inicio.html')
 
+@login_required
+def agregar_libro(request):
+    return render(request, 'libros/agregar.html')
+
 
 def salir(request):
     logout(request)

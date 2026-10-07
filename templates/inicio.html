@@ -39,10 +39,6 @@
             border-radius: 6px;
         }
 
-        header a:hover {
-            background: #496b57;
-        }
-
         main {
             width: 90%;
             max-width: 1100px;
@@ -77,10 +73,6 @@
             border-radius: 7px;
         }
 
-        .boton:hover {
-            background: #36513f;
-        }
-
         .tabla {
             background: white;
             border-radius: 10px;
@@ -103,6 +95,18 @@
         td {
             padding: 14px;
             border-top: 1px solid #eee;
+        }
+
+        .editar {
+            color: #36513f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .eliminar {
+            color: #a83838;
+            text-decoration: none;
+            font-weight: bold;
         }
 
         .vacio {
@@ -151,15 +155,17 @@
         <div class="acciones">
             <h2>Libros registrados</h2>
 
-            <a href="#" class="boton">
-                + Agregar libro
-            </a>
+            <a href="{% url 'agregar_libro' %}" class="boton">
+    + Agregar libro
+</a>
         </div>
 
         {% if libros %}
 
             <div class="tabla">
+
                 <table>
+
                     <thead>
                         <tr>
                             <th>Título</th>
@@ -174,12 +180,8 @@
                     <tbody>
 
                         {% for libro in libros %}
+
                             <tr>
-                                <td>
-    <a href="#">Editar</a>
-    |
-    <a href="#">Eliminar</a>
-</td>
                                 <td>{{ libro.titulo }}</td>
                                 <td>{{ libro.autor }}</td>
                                 <td>{{ libro.genero }}</td>
@@ -192,18 +194,39 @@
                                         No
                                     {% endif %}
                                 </td>
+
+                                <td>
+                                    <a
+                                        href="/editar/{{ libro.id }}/"
+                                        class="editar"
+                                    >
+                                        Editar
+                                    </a>
+
+                                    |
+
+                                    <a
+                                        href="/eliminar/{{ libro.id }}/"
+                                        class="eliminar"
+                                    >
+                                        Eliminar
+                                    </a>
+                                </td>
                             </tr>
+
                         {% endfor %}
 
                     </tbody>
+
                 </table>
+
             </div>
 
         {% else %}
 
             <div class="vacio">
                 <h3>📖 No hay libros registrados</h3>
-                <p>Cuando se agreguen libros aparecerán aquí.</p>
+                <p>Cuando agregues libros aparecerán aquí.</p>
             </div>
 
         {% endif %}
